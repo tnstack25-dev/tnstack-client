@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --surface-strong: #f1f5f9;
+  --muted-foreground: #475569;
+  --border: #e2e8f0;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-foreground: #ffffff;
+  --primary-soft: #dbeafe;
+  --primary-dark: #1e40af;
+  --accent: #38bdf8;
+  --accent-soft: #eff6ff;
+  --dark: #0f172a;
+  --brand-on-dark: #38bdf8;
+  --bg-body: var(--background);
+  --bg-section: var(--surface-strong);
+  --bg-card: var(--surface);
+  --bg-dark: var(--dark);
+  --text-heading: var(--foreground);
+  --text-body: var(--muted-foreground);
+  --text-muted: #64748b;
+  --text-white: #ffffff;
+  --border-color: var(--border);
+  --button-primary: var(--primary);
+  --button-primary-hover: var(--primary-hover);
+  --button-text: var(--primary-foreground);
+  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+  --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --surface: #1e293b;
+  --surface-strong: #263449;
+  --muted-foreground: #cbd5e1;
+  --border: #334155;
+  --primary: #38bdf8;
+  --primary-hover: #7dd3fc;
+  --primary-foreground: #0f172a;
+  --primary-soft: #1e3a5f;
+  --primary-dark: #1e40af;
+  --accent: #38bdf8;
+  --accent-soft: #172f4b;
+  --dark: #0f172a;
+  --brand-on-dark: #38bdf8;
+  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+  --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-dark: var(--dark);
+  --font-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: uppercase;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--foreground);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(to right, rgb(15 23 42 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(15 23 42 / 0.055) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black 35%, transparent 95%);
+}
+
+.dark .grid-pattern {
+  background-image:
+    linear-gradient(to right, rgb(248 250 252 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(248 250 252 / 0.055) 1px, transparent 1px);
+}
+
+/* Shared palette for all service pages in both themes. */
+.service-theme {
+  --service-bg: var(--background);
+  --service-surface: var(--surface-strong);
+  --service-surface-strong: var(--primary-soft);
+  --service-card: var(--surface);
+  --service-card-hover: var(--primary-soft);
+  --service-input: var(--surface);
+  --service-heading: var(--foreground);
+  --service-muted: var(--muted-foreground);
+  --service-muted-strong: var(--foreground);
+  --service-accent: var(--primary);
+  --service-accent-hover: var(--primary-hover);
+  --service-on-accent: var(--primary-foreground);
+  --service-border: color-mix(in srgb, var(--primary) 18%, transparent);
+  --service-accent-border: color-mix(in srgb, var(--primary) 42%, transparent);
+  background-color: var(--service-bg);
+  color: var(--service-heading);
+}
+
+.service-theme input,
+.service-theme select,
+.service-theme textarea {
+  border-color: var(--service-border) !important;
+  background-color: var(--service-input) !important;
+  color: var(--service-heading) !important;
+}
+
+.service-theme input::placeholder,
+.service-theme textarea::placeholder {
+  color: var(--service-muted) !important;
+}
+
+.service-theme option {
+  background: var(--service-input);
+  color: var(--service-heading);
+}
+
+.service-theme a[class*="text-white"],
+.service-theme button[class*="text-white"] {
+  color: var(--service-heading) !important;
+}
+
+.service-theme nav[aria-label="Breadcrumb"] [class*="text-white"] {
+  color: var(--service-heading) !important;
+}
+
+.service-theme :focus-visible {
+  outline-color: var(--service-accent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .float-slow {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .marquee-track {
+    animation: marquee 24s linear infinite;
+  }
+
+  .pulse-soft {
+    animation: pulse-soft 3s ease-in-out infinite;
+  }
+
+  .shine {
+    animation: shine 4.5s ease-in-out infinite;
+  }
+
+  .flow-sheen {
+    animation: flow-sheen 3.2s ease-in-out infinite;
+  }
+
+  .flow-arrow {
+    animation: flow-arrow 1.8s ease-in-out infinite;
+  }
+
+  .ping-soft {
+    animation: ping-soft 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .orbit-ring {
+    animation: orbit-ring 18s linear infinite;
+  }
+
+  .bar-grow {
+    transform-origin: bottom;
+    animation: bar-grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .ping-contact {
+    animation: ping-contact 2.4s ease-out infinite;
+  }
+
+  .portfolio-scan {
+    animation: portfolio-scan 5s ease-in-out infinite;
+  }
+
+  .timeline-line {
+    transform-origin: top;
+    animation: timeline-grow 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes shine {
+    0%,
+    70%,
+    100% {
+      transform: translateX(-160%) skewX(-20deg);
+    }
+    90% {
+      transform: translateX(260%) skewX(-20deg);
+    }
+  }
+
+  @keyframes flow-sheen {
+    0%,
+    55%,
+    100% {
+      transform: translateX(-30%);
+      opacity: 0;
+    }
+    75% {
+      transform: translateX(430%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes flow-arrow {
+    0%,
+    100% {
+      transform: translateY(-2px);
+      opacity: 0.45;
+    }
+    50% {
+      transform: translateY(3px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes ping-soft {
+    75%,
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes orbit-ring {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes bar-grow {
+    from {
+      transform: scaleY(0.08);
+      opacity: 0.35;
+    }
+    to {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes ping-contact {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    35% {
+      opacity: 0.55;
+    }
+    75% {
+      transform: scale(1.75);
+      opacity: 0;
+    }
+  }
+
+  @keyframes portfolio-scan {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    15%,
+    70% {
+      opacity: 0.7;
+    }
+    85% {
+      transform: translateY(31rem);
+      opacity: 0;
+    }
+  }
+
+  @keyframes timeline-grow {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+}
