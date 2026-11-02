@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TNStack Client
 
-## Getting Started
+Website dịch vụ thiết kế website, quảng cáo số và SEO, xây dựng bằng Next.js App Router, React, TypeScript và Tailwind CSS.
 
-First, run the development server:
+## Bắt đầu
+
+Yêu cầu Node.js 20.9 trở lên. Tạo file môi trường và chạy development server:
 
 ```bash
+cp .env.example .env.local
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev          # Development server
+npm run build        # Production build (webpack)
+npm run typecheck    # Kiểm tra TypeScript
+npm run lint         # Kiểm tra ESLint
+npm run format       # Format source code
+npm run format:check # Kiểm tra format
+npm run check        # Chạy typecheck, lint và format:check
+```
 
-## Learn More
+## Cấu trúc chính
 
-To learn more about Next.js, take a look at the following resources:
+- `src/app/`: route, layout, metadata, sitemap và robots.
+- `src/components/home/`: các section của trang chủ.
+- `src/components/layout/`: các thành phần layout dùng chung.
+- `src/components/ui/`: UI primitive có thể tái sử dụng.
+- `src/config/`: cấu hình môi trường và thông tin website.
+- `src/lib/`: helper dùng chung.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Package nền
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `react-hook-form`, `zod`, `@hookform/resolvers`: form và validation.
+- `class-variance-authority`, `clsx`, `tailwind-merge`: xây dựng UI component.
+- `lucide-react`: icon.
+- `motion`: animation khi cần.
+- `sonner`: toast notification.
 
-## Deploy on Vercel
+Trước khi deploy:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Cập nhật domain và API trong `.env.local` theo `.env.example`.
+- Cập nhật email, số điện thoại và đường dẫn Zalo tại `src/config/site.ts`.
+- Kết nối hàm `onSubmit` trong contact form với API tiếp nhận lead của backend.
